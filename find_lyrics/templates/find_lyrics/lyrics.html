@@ -10,6 +10,8 @@
 		<div class="jumbotron">
 			<h1 class="display-4">{{ song }} by {{ artist }}</h1>
 			<h3 class="lead">{% autoescape off %}{{ lyrics }}{% endautoescape %}</h3>
+			<hr>
+			<a href="{% url 'home' %}"><button class="btn btn-success">Search Again</button></a>
 		</div>
 	</div>
 
