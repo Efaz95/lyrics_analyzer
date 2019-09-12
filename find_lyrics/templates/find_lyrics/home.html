@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lyrics Finder</title>
+</head>
+<body>
+	<h1>Search your favorite song lyrics:</h1>
+
+	<form action="{% url 'lyrics' %}">
+		
+		<label>Song:
+			<input type="text" name="song">
+		</label>
+
+		<label>Artist:
+			<input type="text" name="artist">
+		</label>
+
+		<button>Submit</button>
+
+	</form>
+
+</body>
+</html>
