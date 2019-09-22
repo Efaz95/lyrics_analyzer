@@ -7,55 +7,49 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.probability import FreqDist
-# import matplotlib.pyplot as pt
 
 stop_words=set(stopwords.words("english"))
 tokenizer = RegexpTokenizer(r'\w+')
 
 
-#this function takes artist and song and returns the lyrics
-def search_ly(artist, song):
-	f_song = song.replace(" ", "")
-	f_artist = artist.replace(" ", "")
-	url = f"https://www.azlyrics.com/lyrics/{f_artist}/{f_song}.html"
+class lyrics_analysis:
+	def __init__(self, artist, song):
+		self.artist = artist
+		self.song = song
 
-	response = requests.get(url)
-	soup = BeautifulSoup(response.content, "html.parser")
-	lyrics = soup.find_all('div')[21].text
+	#this method searchs the lyrics of the song
+	def search_ly(self):
+		f_song = self.song.replace(" ", "")
+		f_artist = self.artist.replace(" ", "")
+		url = f"https://www.azlyrics.com/lyrics/{f_artist}/{f_song}.html"
 
-	return lyrics
+		response = requests.get(url)
+		soup = BeautifulSoup(response.content, "html.parser")
+		lyrics = soup.find_all('div')[21].text
 
-lyrics_1 = search_ly("ariana grande", "god is a woman")
-lyrics_2 = search_ly("ariana grande", "boyfriend")
-lyrics_3 = search_ly("ariana grande", "into you")
+		return lyrics
 
+	#this method return 10 most common words in a song
+	def word_freq(self):
+		filtered=[]
+		for w in tokenizer.tokenize(self.search_ly()):
+		    if w not in stop_words and (len(w)>1):
+		        filtered.append(w)
 
-#this function returns 10 most used words in a song
-def word_freq(lyrics):
-	filtered_sent=[]
-	for w in tokenizer.tokenize(lyrics):
-	    if w not in stop_words and (len(w)>1):
-	        filtered_sent.append(w)
-
-	fdist = FreqDist(filtered_sent)
-	return fdist.most_common(10)
-
-wfreq = word_freq(lyrics_1)
-
-#this function plots a words frequency graph
-def word_freq_graph(lyrics):
-	filtered_sent=[]
-	for w in tokenizer.tokenize(lyrics):
-	    if w not in stop_words and (len(w)>1):
-	        filtered_sent.append(w)
-
-	fdist = FreqDist(filtered_sent)
-	fdist.plot(30,cumulative=False)
+		fdist = FreqDist(filtered)
+		return fdist.most_common(10)
 
 
+	#this method plots a words frequency graph
+	def word_freq_graph(self):
+		filtered=[]
+		for w in tokenizer.tokenize(self.search_ly()):
+		    if w not in stop_words and (len(w)>1):
+		        filtered.append(w)
 
+		fdist = FreqDist(filtered)
+		fdist.plot(30,cumulative=False)
 
-word_freq_graph(lyrics_2)
 
 
 #this function returns words that are shared between 3 songs
@@ -72,16 +66,14 @@ def shared_words(lyrics1, lyrics2, lyrics3):
 	return shared_words_set
 
 
-#print(shared_words(lyrics_1, lyrics_2, lyrics_3))
+
+lyrics1 = lyrics_analysis("ariana grande", "into you")
+lyrics2 = lyrics_analysis("ariana grande", "god is a woman")
+lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
+shared = shared_words(lyrics1.search_ly(),lyrics2.search_ly(),lyrics3.search_ly())
+print(shared)
 
 
 
 
-
-
-
-
-
-
-
-
+		
