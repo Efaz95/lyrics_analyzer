@@ -73,7 +73,3 @@ lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
 shared = shared_words(lyrics1.search_ly(),lyrics2.search_ly(),lyrics3.search_ly())
 print(shared)
 
-
-
-
-		
