@@ -17,7 +17,7 @@ class lyrics_analysis:
 		self.artist = artist
 		self.song = song
 
-	#this method searchs the lyrics of the song
+	#this method searches the lyrics of the song
 	def search_ly(self):
 		f_song = self.song.replace(" ", "")
 		f_artist = self.artist.replace(" ", "")
@@ -29,7 +29,7 @@ class lyrics_analysis:
 
 		return lyrics
 
-	#this method return 10 most common words in a song
+	#this method returns 10 most common words in a song
 	def word_freq(self):
 		filtered=[]
 		for w in tokenizer.tokenize(self.search_ly()):
@@ -67,9 +67,12 @@ def shared_words(lyrics1, lyrics2, lyrics3):
 
 
 
-lyrics1 = lyrics_analysis("ariana grande", "into you")
-lyrics2 = lyrics_analysis("ariana grande", "god is a woman")
-lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
-shared = shared_words(lyrics1.search_ly(),lyrics2.search_ly(),lyrics3.search_ly())
-print(shared)
+lyrics1 = lyrics_analysis("cold play", "fix you")
+fix_you_ly = lyrics1.search_ly()
+
+# lyrics1.word_freq_graph()
+# lyrics2 = lyrics_analysis("ariana grande", "god is a woman")
+# lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
+# shared = shared_words(lyrics1.search_ly(),lyrics2.search_ly(),lyrics3.search_ly())
+# print(shared)
 
