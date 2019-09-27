@@ -19,6 +19,7 @@ url = f"https://genius.com/api/songs/{id}/comments?page=1&text_format=html,markd
 response = requests.get(url)
 comments = response.json()['response']['comments']
 
+#prints top 10 user comments
 for i,comment in enumerate(comments,1):
 	print(f"{i}. {comment['body']['markdown']}")
 
