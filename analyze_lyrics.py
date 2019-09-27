@@ -67,12 +67,12 @@ def shared_words(lyrics1, lyrics2, lyrics3):
 
 
 
-lyrics1 = lyrics_analysis("cold play", "fix you")
-fix_you_ly = lyrics1.search_ly()
 
+lyrics1 = lyrics_analysis("cold play", "fix you")
+# fix_you_ly = lyrics1.search_ly()
 # lyrics1.word_freq_graph()
-# lyrics2 = lyrics_analysis("ariana grande", "god is a woman")
-# lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
-# shared = shared_words(lyrics1.search_ly(),lyrics2.search_ly(),lyrics3.search_ly())
-# print(shared)
+lyrics2 = lyrics_analysis("ariana grande", "god is a woman")
+lyrics3 = lyrics_analysis("ariana grande", "boyfriend")
+shared = shared_words(lyrics1.search_ly(), lyrics2.search_ly(), lyrics3.search_ly())
+print(shared)
 
