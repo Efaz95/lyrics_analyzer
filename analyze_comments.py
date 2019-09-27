@@ -18,5 +18,8 @@ id = api_response.json()['response']['hits'][0]['result']['id']
 url = f"https://genius.com/api/songs/{id}/comments?page=1&text_format=html,markdown"
 response = requests.get(url)
 comments = response.json()['response']['comments']
+
 for i,comment in enumerate(comments,1):
 	print(f"{i}. {comment['body']['markdown']}")
+
+

@@ -12,9 +12,9 @@ def home(request):
 
 def display_lyrics(request):
 
-	song = request.GET['song'] 
+	song = request.GET['song'].lower()
 	f_song = song.replace(" ", "")
-	artist = request.GET['artist']
+	artist = request.GET['artist'].lower()
 	f_artist = artist.replace(" ", "")
 
 	url = f"https://www.azlyrics.com/lyrics/{f_artist}/{f_song}.html"
