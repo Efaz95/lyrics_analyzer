@@ -16,6 +16,7 @@ class lyrics_analysis:
 	def __init__(self, artist, song):
 		self.artist = artist
 		self.song = song
+		self.lyrics = "" # We will be storing the lyrics to the song for faster access
 
 	#this method searches the lyrics of the song
 	def search_ly(self):
@@ -25,14 +26,15 @@ class lyrics_analysis:
 
 		response = requests.get(url)
 		soup = BeautifulSoup(response.content, "html.parser")
-		lyrics = soup.find_all('div')[21].text
-
+		lyrics = soup.find_all('div')[19].text
+		
+		self.lyrics = lyrics  # Storing the lyrics
 		return lyrics
 
 	#this method returns 10 most common words in a song
 	def word_freq(self):
 		filtered=[]
-		for w in tokenizer.tokenize(self.search_ly()):
+		for w in tokenizer.tokenize(self.lyrics if self.lyrics != "" else self.search_ly()):
 		    if w not in stop_words and (len(w)>1):
 		        filtered.append(w)
 
@@ -43,7 +45,7 @@ class lyrics_analysis:
 	#this method plots a words frequency graph
 	def word_freq_graph(self):
 		filtered=[]
-		for w in tokenizer.tokenize(self.search_ly()):
+		for w in tokenizer.tokenize(self.lyrics if self.lyrics != "" else self.search_ly()):
 		    if w not in stop_words and (len(w)>1):
 		        filtered.append(w)
 
