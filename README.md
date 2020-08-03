@@ -5,4 +5,4 @@ Lyrics are scrapped from *www.azlyrics.com* using BeautifulSoup. Natural Languag
 Sentiment analysis on user comments to demostrate what audience feel about the song.
 
 
-***lyrics not used for any commercial purposes. Just a college project.***
+***lyrics not used for any commercial purposes.***
